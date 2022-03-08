@@ -22,7 +22,14 @@ const switchOptions = async(value,browsingHistory) => {
     switch (value) {
         case 1:{
             try {
-
+                const {desc} = await readInput("City:",(value)=>{
+                    return value.trim().length === 0 ? "Please Enter a valid city" : true
+                })
+                
+                const {
+                    data:{list}
+                } = await axios.get(`https://api.openweathermap.org/data/2.5/find?q=${desc}&appid=${process.env.WEATHER_API_KEY}`)
+                
                 const question = {
                     type: "list",
                     name: "option",
