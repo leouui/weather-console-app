@@ -22,9 +22,7 @@ const switchOptions = async(value,browsingHistory) => {
     switch (value) {
         case 1:{
             try {
-                const {desc} = await readInput("City:",(value)=> value.trim().length === 0 ? "Please Enter a valid city" : true)
-                const {data:{list}} = await axios.get(`https://api.openweathermap.org/data/2.5/find?q=${desc}&appid=${process.env.WEATHER_API_KEY}`)
-                
+
                 const question = {
                     type: "list",
                     name: "option",
@@ -63,8 +61,8 @@ const switchOptions = async(value,browsingHistory) => {
             }
         } break
         case 2: {
-            browsingHistory.getHistory.forEach(({name},index) => {
-                console.log(`${`${index+1}`.green}. ${name}`)
+            browsingHistory.getHistory.forEach((itemName,index) => {
+                console.log(`${`${index+1}`.green}. ${itemName}`)
             });
         } break;
     }

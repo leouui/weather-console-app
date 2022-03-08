@@ -4,7 +4,10 @@ class BrowsingHistory {
     }
 
     addNewHistory(historyTitle) {
-        this.history = [{name:historyTitle},...this.history].splice(0,6)
+        let index = this.history.indexOf(historyTitle)
+        if(index >= 0) this.history.splice(index,1)
+
+        this.history = [historyTitle,...this.history].splice(0,6)
     }
 
     get getHistory() {
